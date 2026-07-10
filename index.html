@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CARES — Children Advocates for Road Education and Safety</title>
+<meta name="description" content="CARES: Children Advocates for Road Education and Safety. Learn the facts, test your reflexes, take the quiz, and get involved.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ===== OVERHEAD SIGN NAV ===== -->
+<header class="gantry">
+  <div class="gantry__inner">
+    <a class="gantry__brand" href="#top">
+      <span class="gantry__brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" width="30" height="30"><path d="M12 3H28L37 12V28L28 37H12L3 28V12L12 3Z" fill="#C8102E" stroke="#fff" stroke-width="2"/></svg>
+      </span>
+      CARES
+    </a>
+    <nav class="gantry__links">
+      <a href="#join">Get Involved</a>
+      <a href="#facts">Road Facts</a>
+      <a href="#try-it">Try It</a>
+      <a href="#quiz">Quiz</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero__sign">
+      <p class="hero__eyebrow">Children Advocates for Road Education &amp; Safety</p>
+      <h1 class="hero__title">Stop. Look.<br>Learn to Drive Safer.</h1>
+      <p class="hero__sub">Three days of hands-on road safety education for Tennessee families.</p>
+      <div class="hero__details">
+        <div class="hero__detail">
+          <span class="hero__detail-label">When</span>
+          <span class="hero__detail-value">August 6–8</span>
+        </div>
+        <div class="hero__detail">
+          <span class="hero__detail-label">Where</span>
+          <span class="hero__detail-value">FedEx Institute</span>
+        </div>
+        <div class="hero__detail">
+          <span class="hero__detail-label">Schedule</span>
+          <span class="hero__detail-value">Half day · Full day · Ciera's Day</span>
+        </div>
+      </div>
+      <a href="#join" class="btn btn--yield">Get Involved</a>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 4: INTEREST FORM (placed near the top, per program request) ===== -->
+  <section id="join" class="section section--join">
+    <div class="section__inner">
+      <p class="section__eyebrow">No account. No password.</p>
+      <h2 class="section__title">Get Involved</h2>
+      <p class="section__lede">Leave your info and CARES staff will follow up with event updates and resources. That's it — nothing to sign in to.</p>
+
+      <form id="interest-form" class="form" novalidate>
+        <div class="form__row">
+          <div class="form__field">
+            <label for="firstName">First name</label>
+            <input type="text" id="firstName" name="firstName" autocomplete="given-name" required>
+          </div>
+          <div class="form__field">
+            <label for="lastName">Last name</label>
+            <input type="text" id="lastName" name="lastName" autocomplete="family-name" required>
+          </div>
+        </div>
+        <div class="form__row">
+          <div class="form__field">
+            <label for="phone">Phone number</label>
+            <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="(901) 555-0123" required>
+          </div>
+          <div class="form__field">
+            <label for="zip">Zip code</label>
+            <input type="text" id="zip" name="zip" autocomplete="postal-code" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" placeholder="38152" required>
+          </div>
+        </div>
+        <button type="submit" class="btn btn--stop">Sign Me Up</button>
+        <p class="form__status" id="interest-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 1: TN ROAD SAFETY FACTS ===== -->
+  <section id="facts" class="section section--facts">
+    <div class="section__inner">
+      <p class="section__eyebrow">Section 1</p>
+      <h2 class="section__title">Tennessee Road Safety, By the Numbers</h2>
+      <p class="section__lede">Real data from the Tennessee Department of Safety &amp; Homeland Security, 2019–2023.</p>
+
+      <div class="fact-grid">
+        <article class="fact-card fact-card--red">
+          <p class="fact-card__stat">102,424</p>
+          <p class="fact-card__label">crashes over 5 years involved a teen driver (age 14–18) in Tennessee</p>
+        </article>
+        <article class="fact-card fact-card--yellow">
+          <p class="fact-card__stat">17%</p>
+          <p class="fact-card__label">of teen driver crashes happen on Fridays — the single worst day of the week</p>
+        </article>
+        <article class="fact-card fact-card--blue">
+          <p class="fact-card__stat">~44%</p>
+          <p class="fact-card__label">of teen crashes list "failure to yield" or "following too closely" as the cause</p>
+        </article>
+        <article class="fact-card fact-card--black">
+          <p class="fact-card__stat">~1 in 2</p>
+          <p class="fact-card__label">fatally injured occupants in teen-driver crashes were not wearing a seatbelt</p>
+        </article>
+      </div>
+
+      <div class="law-list">
+        <h3 class="law-list__title">Know the Law</h3>
+        <ul>
+          <li><strong>Seatbelts, always.</strong> Tennessee is a primary seatbelt state — every driver and front-seat passenger must buckle up, and anyone under 17 must buckle up in the back seat too.</li>
+          <li><strong>No texting, ever.</strong> Reading or sending texts while driving is illegal for all drivers in Tennessee.</li>
+          <li><strong>No phone at all for permit &amp; intermediate license holders</strong> — not even hands-free — until you're 18.</li>
+          <li><strong>Learner's permit curfew:</strong> no driving between 10 p.m. and 6 a.m., and a licensed adult (21+) must ride in the front seat.</li>
+          <li><strong>Move over</strong> for stopped emergency vehicles — change lanes or slow way down.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 2: INTERACTIVE / HANDS-ON ===== -->
+  <section id="try-it" class="section section--interactive">
+    <div class="section__inner">
+      <p class="section__eyebrow">Section 2 · Hands-On</p>
+      <h2 class="section__title">Try the Road Safety Games</h2>
+      <p class="section__lede">Four quick hands-on activities. Try whichever ones you like, in any order — head to the quiz whenever you're ready.</p>
+
+      <div class="game-tabs" role="tablist" aria-label="Choose a game">
+        <button class="game-tab is-active" role="tab" aria-selected="true" aria-controls="panel-stopsign" data-panel="panel-stopsign">Stop Sign</button>
+        <button class="game-tab" role="tab" aria-selected="false" aria-controls="panel-light" data-panel="panel-light">Traffic Light</button>
+        <button class="game-tab" role="tab" aria-selected="false" aria-controls="panel-cross" data-panel="panel-cross">Look Both Ways</button>
+        <button class="game-tab" role="tab" aria-selected="false" aria-controls="panel-speed" data-panel="panel-speed">Speed Limit</button>
+      </div>
+
+      <!-- Game 1: Stop Sign Reaction -->
+      <div class="game-panel is-active" id="panel-stopsign" role="tabpanel">
+        <p class="game-panel__intro">A driver going 60 mph covers almost 90 feet <em>per second</em>. Wait for the stop sign to appear, then tap it as fast as you can.</p>
+        <div class="reaction">
+          <div class="reaction__stage" id="reaction-stage" tabindex="0" role="button" aria-label="Stop sign reaction test area">
+            <div class="reaction__content" id="reaction-content">
+              <p class="reaction__prompt">Tap to start</p>
+            </div>
+          </div>
+          <div class="reaction__readout" id="reaction-readout" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <!-- Game 2: Traffic Light Reaction -->
+      <div class="game-panel" id="panel-light" role="tabpanel" hidden>
+        <p class="game-panel__intro">Red means stop, yellow means get ready — only go when it's actually green. Tap the light the instant it turns green.</p>
+        <div class="reaction">
+          <div class="light-stage" id="light-stage" tabindex="0" role="button" aria-label="Traffic light reaction test area">
+            <div class="light-box">
+              <div class="light-bulb light-bulb--red" id="bulb-red"></div>
+              <div class="light-bulb light-bulb--yellow" id="bulb-yellow"></div>
+              <div class="light-bulb light-bulb--green" id="bulb-green"></div>
+            </div>
+            <p class="reaction__prompt" id="light-prompt">Tap to start</p>
+          </div>
+          <div class="reaction__readout" id="light-readout" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <!-- Game 3: Look Both Ways -->
+      <div class="game-panel" id="panel-cross" role="tabpanel" hidden>
+        <p class="game-panel__intro">Check both directions before you cross. Tap <strong>Check Left</strong> and <strong>Check Right</strong> — you can only cross once both sides are clear.</p>
+        <div class="crossing">
+          <div class="crossing__road">
+            <div class="crossing__lane crossing__lane--left" id="lane-left">
+              <span class="crossing__status" id="lane-left-status">?</span>
+            </div>
+            <div class="crossing__walk" aria-hidden="true">
+              <span>🚶</span>
+            </div>
+            <div class="crossing__lane crossing__lane--right" id="lane-right">
+              <span class="crossing__status" id="lane-right-status">?</span>
+            </div>
+          </div>
+          <div class="crossing__controls">
+            <button class="btn btn--ghost" id="check-left">Check Left</button>
+            <button class="btn btn--ghost" id="check-right">Check Right</button>
+            <button class="btn btn--stop" id="cross-now" disabled>Cross Now</button>
+          </div>
+          <div class="reaction__readout" id="crossing-readout" aria-live="polite">Round 1 of 3 — tap Check Left or Check Right to begin.</div>
+        </div>
+      </div>
+
+      <!-- Game 4: Speed Limit Sign Recognition -->
+      <div class="game-panel" id="panel-speed" role="tabpanel" hidden>
+        <p class="game-panel__intro">Read the driving scenario, then tap the speed limit sign that matches it. These are general examples — always follow posted signs.</p>
+        <div class="speedgame">
+          <p class="speedgame__scenario" id="speed-scenario"></p>
+          <div class="speedgame__signs" id="speed-signs"></div>
+          <div class="reaction__readout" id="speed-readout" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 3: QUIZ ===== -->
+  <section id="quiz" class="section section--quiz">
+    <div class="section__inner">
+      <p class="section__eyebrow">Section 3</p>
+      <h2 class="section__title">Road Safety Quiz</h2>
+      <p class="section__lede">8 questions. See your score at the end.</p>
+
+      <div id="quiz-app" class="quiz">
+        <div class="quiz__progress">
+          <div class="quiz__progress-bar" id="quiz-progress-bar"></div>
+        </div>
+        <p class="quiz__counter" id="quiz-counter">Question 1 of 8</p>
+
+        <div id="quiz-question-wrap">
+          <h3 class="quiz__question" id="quiz-question"></h3>
+          <div class="quiz__options" id="quiz-options"></div>
+        </div>
+
+        <div id="quiz-result" class="quiz__result" hidden>
+          <p class="quiz__result-score" id="quiz-result-score"></p>
+          <p class="quiz__result-msg" id="quiz-result-msg"></p>
+          <button class="btn btn--stop" id="quiz-submit-score">Submit My Score</button>
+          <button class="btn btn--ghost" id="quiz-retry">Retake Quiz</button>
+          <p class="form__status" id="quiz-status" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>CARES — Children Advocates for Road Education and Safety · FedEx Institute · August 6–8</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
