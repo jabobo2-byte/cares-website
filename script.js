@@ -8,8 +8,6 @@
 const SCRIPT_URL = "PASTE_YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE";
 // -------------------------
 
-// Remembers whoever filled out the interest form so their quiz score
-// can be linked to the same person for research purposes.
 let participant = { firstName: "", lastName: "", phone: "", zip: "" };
 
 async function sendToSheet(payload) {
@@ -18,7 +16,6 @@ async function sendToSheet(payload) {
     return { ok: false, reason: "not-configured" };
   }
   try {
-    // Apps Script web apps behave best with a simple no-cors text/plain POST.
     await fetch(SCRIPT_URL, {
       method: "POST",
       mode: "no-cors",
@@ -85,7 +82,7 @@ const STOP_SIGN_SVG = `
       text-anchor="middle" font-weight="700" letter-spacing="1">STOP</text>
   </svg>`;
 
-let reactionState = "idle"; // idle | waiting | go
+let reactionState = "idle";
 let waitTimer = null;
 let goTime = 0;
 
@@ -102,7 +99,7 @@ function startReaction() {
   content.innerHTML = `<p class="reaction__prompt">Wait for it…</p>`;
   readout.textContent = "";
 
-  const delay = 1200 + Math.random() * 2800; // 1.2s–4s
+  const delay = 1200 + Math.random() * 2800;
   waitTimer = setTimeout(() => {
     reactionState = "go";
     goTime = performance.now();
@@ -117,7 +114,6 @@ function handleStageActivate() {
     return;
   }
   if (reactionState === "waiting") {
-    // Clicked too soon
     clearTimeout(waitTimer);
     stage.className = "reaction__stage is-early";
     content.innerHTML = `<p class="reaction__prompt">Too soon!</p>`;
@@ -175,7 +171,7 @@ const bulbRed = document.getElementById("bulb-red");
 const bulbYellow = document.getElementById("bulb-yellow");
 const bulbGreen = document.getElementById("bulb-green");
 
-let lightState = "idle"; // idle | red | yellow | green
+let lightState = "idle";
 let lightTimer = null;
 let lightGoTime = 0;
 
@@ -396,7 +392,7 @@ function handleSpeedPick(picked, correct, btnEl) {
 renderSpeedRound();
 
 /* ============ Section 3: Quiz ============ */
-const QUIZ_QUESTIONS = [
+const QUIZ_QUESTION_POOL = [
   {
     q: "In Tennessee, who is required to wear a seatbelt while a car is moving?",
     options: [
@@ -449,8 +445,104 @@ const QUIZ_QUESTIONS = [
     q: "About what fraction of fatally injured occupants in teen-driver crashes were unrestrained (no seatbelt)?",
     options: ["1 in 20", "1 in 2", "1 in 100", "Nearly all of them"],
     correct: 1
+  },
+  {
+    q: "According to TN crash data (2019–2023), about how many crashes involved a teen driver?",
+    options: ["About 10,000", "About 50,000", "About 102,000", "About 500,000"],
+    correct: 2
+  },
+  {
+    q: "Which day of the week sees the most teen driver crashes in Tennessee?",
+    options: ["Sunday", "Wednesday", "Friday", "Saturday"],
+    correct: 2
+  },
+  {
+    q: "About what share of teen driver crashes list \"failure to yield\" or \"following too closely\" as the cause?",
+    options: ["About 5%", "About 20%", "About 44%", "About 80%"],
+    correct: 2
+  },
+  {
+    q: "In Tennessee's teen driver crash data, what age range counts as a \"teen driver\"?",
+    options: ["13–16", "14–18", "16–19", "15–17"],
+    correct: 1
+  },
+  {
+    q: "What is the legal blood alcohol concentration (BAC) limit for drivers 21 and older in Tennessee?",
+    options: ["0.02%", "0.05%", "0.08%", "0.10%"],
+    correct: 2
+  },
+  {
+    q: "Under Tennessee's \"Zero Tolerance\" law, what BAC limit applies to drivers under 21?",
+    options: ["0.08%", "0.05%", "0.02%", "0.10%"],
+    correct: 2
+  },
+  {
+    q: "On a two-lane road, if a school bus stops with its red lights flashing and stop arm out, who must stop?",
+    options: ["Only traffic behind the bus", "Only oncoming traffic", "Traffic in both directions", "No one, if going under 25 mph"],
+    correct: 2
+  },
+  {
+    q: "What shape is a standard STOP sign?",
+    options: ["Circle", "Triangle", "Octagon", "Square"],
+    correct: 2
+  },
+  {
+    q: "A downward-pointing triangle road sign means:",
+    options: ["Stop", "Yield", "No U-turn", "One way"],
+    correct: 1
+  },
+  {
+    q: "Diamond-shaped road signs generally indicate:",
+    options: ["Regulatory speed limits", "Warning of an upcoming hazard", "Interstate exits", "Handicap parking"],
+    correct: 1
+  },
+  {
+    q: "What's a commonly taught safe following distance behind the car ahead?",
+    options: ["1 second", "3 seconds", "10 seconds", "There's no real guideline"],
+    correct: 1
+  },
+  {
+    q: "At a 4-way stop, if two cars arrive at the same time, who has the right of way?",
+    options: ["The car going straight", "The car turning left", "The car on the right", "Whoever honks first"],
+    correct: 2
+  },
+  {
+    q: "If your car starts to hydroplane on a wet road, what should you do?",
+    options: ["Slam the brakes immediately", "Ease off the gas and steer straight", "Turn the wheel sharply to regain control", "Accelerate to power through it"],
+    correct: 1
+  },
+  {
+    q: "A yellow traffic light means:",
+    options: ["Speed up to beat the red", "The light is about to turn red — prepare to stop", "You have the right of way", "It's the same as a green light"],
+    correct: 1
   }
 ];
+
+const QUESTIONS_PER_ROUND = 6;
+
+function shuffleArray(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function buildQuizRound() {
+  const chosen = shuffleArray(QUIZ_QUESTION_POOL).slice(0, QUESTIONS_PER_ROUND);
+  return chosen.map((q) => {
+    const optionsWithFlag = q.options.map((text, i) => ({ text, isCorrect: i === q.correct }));
+    const shuffledOptions = shuffleArray(optionsWithFlag);
+    return {
+      q: q.q,
+      options: shuffledOptions.map((o) => o.text),
+      correct: shuffledOptions.findIndex((o) => o.isCorrect)
+    };
+  });
+}
+
+let QUIZ_QUESTIONS = buildQuizRound();
 
 let quizIndex = 0;
 let quizScore = 0;
@@ -551,6 +643,7 @@ async function submitQuizScore() {
 }
 
 function retakeQuiz() {
+  QUIZ_QUESTIONS = buildQuizRound();
   quizIndex = 0;
   quizScore = 0;
   quizResultEl.hidden = true;
